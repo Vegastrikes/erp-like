@@ -13,6 +13,7 @@ frontend/dist-ssr
 frontend/*.local
 
 backend/node_modules
+backend/dist
 
 # Editor directories and files
 .vscode/*
