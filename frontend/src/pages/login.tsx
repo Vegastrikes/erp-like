@@ -1,15 +1,15 @@
 import AxiosInstance from '../utils/axios';
 
-export default function LoginPage() {
+export default function Login() {
     return (
         <>
-            <Login />
+            <Form />
             <Signin />
         </>
     )
 }
 
-function Login() {
+function Form() {
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         const formData = new FormData(e.currentTarget)
