@@ -1,6 +1,7 @@
 import './App.css'
-import LoginPage from './pages/login'
-import Home from './pages/home'
+import Login from './pages/Login'
+import Signin from './pages/Signin'
+import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 
 import { createBrowserRouter, RouterProvider } from 'react-router'
@@ -16,7 +17,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <LoginPage />
+    element: <Login />
+  },
+  {
+    path: "/signin",
+    element: <Signin />
   }
 ])
 
