@@ -1,4 +1,7 @@
 import express, { json } from 'express';
+import 'dotenv/config'
+
+require('dotenv').config();
 
 const app = express();
 app.use(json());
