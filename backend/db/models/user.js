@@ -2,6 +2,12 @@ import { DataTypes, Model } from 'sequelize';
 import sequelize from '../sequelize.js';
 
 class User extends Model {
+    sanitize() {
+        return {
+            id: this.id,
+            username: this.username
+        }
+    }
 }
 
 User.init(
