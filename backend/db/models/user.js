@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../sequelize.js';
+import Role from './role.js';
 
 class User extends Model {
     sanitize() {
@@ -32,5 +33,11 @@ User.init(
         modelName: 'User'
     }
 )
+
+Role.hasOne(User, {
+    foreignKey: {
+        allowNull: false
+    }
+});
 
 export default User;

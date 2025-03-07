@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize';
+import seed from './seed.js'
 
 const sequelize = new Sequelize({
   database: process.env.DB_NAME,
@@ -15,6 +16,7 @@ const sequelize = new Sequelize({
     await sequelize.authenticate();
     console.log('Connection to the database has been established successfully.');
     await sequelize.sync();
+    await seed();
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
