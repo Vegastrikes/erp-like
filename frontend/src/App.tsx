@@ -1,6 +1,5 @@
 import './App.css'
 import Login from './pages/Login'
-import Signin from './pages/Signin'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 
@@ -19,10 +18,6 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />
   },
-  {
-    path: "/signin",
-    element: <Signin />
-  }
 ])
 
 function App() {

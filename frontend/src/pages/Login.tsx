@@ -4,7 +4,6 @@ export default function Login() {
     return (
         <>
             <Form />
-            <Signin />
         </>
     )
 }
@@ -17,7 +16,7 @@ function Form() {
         const password = formData.get('password');
 
         try {
-            const response = await AxiosInstance.post('login', {username, password})
+            const response = await AxiosInstance.post('user/login', {username, password})
             console.log(response.data)
         } catch (error) {
             console.error('an error occured on login', error)
@@ -36,13 +35,5 @@ function Form() {
             </div>
             <button type="submit"  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center cursor-pointer dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
         </form>
-    )
-}
-
-function Signin() {
-    return(
-        <>
-            <a href='/signin'>Not a user?<span className='text-blue-500 hover:text-blue-700 cursor-pointer'> Sign in</span></a>
-        </>
     )
 }
