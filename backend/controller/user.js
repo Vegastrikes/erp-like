@@ -1,4 +1,4 @@
-import User from "../db/models/user.js";
+import { User } from "../db/models/models.js";
 import { hash, compare } from 'bcrypt';
 
 export const login = async (req, res) => {
