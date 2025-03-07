@@ -1,6 +1,5 @@
 import express, { json } from 'express';
 import userRouter from '../router/user.js';
-import User from '../db/models/user.js'
 
 const app = express();
 app.use(express.json());
@@ -13,7 +12,6 @@ app.use(function(req, res, next) {
 
 app.use('/api/user', userRouter);
 
-
 app.get('/', (req, res) => {
     res.send({message: "hello backend"});
 })
@@ -22,11 +20,7 @@ app.get('/api', (req, res) => {
     res.send({message: "hello api"});
 })
 
-app.post('/api/login', (req, res) => {
-    res.send({message: "hello api login"});
-})
-
-const port = 6543;
+const port = process.env.PORT;
 app
 .listen(port, () => {
     console.log(`backend is running on port: ${port}`)
