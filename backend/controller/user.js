@@ -9,7 +9,7 @@ export const login = async (req, res) => {
       throw new Error;
     }
 
-    const user = await User.findOne({username});
+    const user = await User.findOne({where: {username: username}});
     const match = await compare(password, user.password);
 
     if (!match) {
