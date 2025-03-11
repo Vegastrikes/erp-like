@@ -16,7 +16,14 @@ export const login = async (req, res) => {
       throw new Error;
     }
 
-    return res.json({message: 'Login successful'});
+    req.session.regenerate((err) => {
+      if (err) {
+        return res.status(500).send('Internal server error')
+      }
+
+      req.session.userId = user.id;
+      return res.send({message: 'Login successful'});
+    })
   } catch (error) {
     return res.status(500).json({message: 'Login failed'});
   }
@@ -24,18 +31,20 @@ export const login = async (req, res) => {
 
 export const create = async (req, res) => { //WIP
   try {
-    const { username, password } = req.body;
-    if (!username || !password) {
-      throw new Error;
-    }
-    const hashedPassword = await hash(password, 10);
+    console.log('session create: ', req.session);
+    res.send({message: "haha"});
+    // const { username, password } = req.body;
+    // if (!username || !password) {
+    //   throw new Error;
+    // }
+    // const hashedPassword = await hash(password, 10);
 
-    const newUser = await User.create({
-        username: username,
-        password: hashedPassword
-    });
+    // const newUser = await User.create({
+    //     username: username,
+    //     password: hashedPassword
+    // });
 
-    return res.status(201).json({message: 'User created', user: newUser.sanitize()});
+    // return res.status(201).json({message: 'User created', user: newUser.sanitize()});
   } catch (error) {
       return res.status(500).json({message: 'Internal Error'});
   }
