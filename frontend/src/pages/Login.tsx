@@ -1,27 +1,23 @@
-import AxiosInstance from '../utils/axios';
+import { useNavigate } from 'react-router';
+import { axiosAPI} from '../utils/axios';
 
 export default function Login() {
     return (
-        <>
-            <Form />
-        </>
+        <Form />
     )
 }
 
 function Form() {
+    const navigate = useNavigate();
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         const formData = new FormData(e.currentTarget)
         const username = formData.get('username');
         const password = formData.get('password');
 
-        try {
-            const response = await AxiosInstance.post('user/login', {username, password})
-            console.log(response.data)
-        } catch (error) {
-            console.error('an error occured on login', error)
-        }
-
+        await axiosAPI.post('user/login', {username, password})
+        .then(() => navigate('/dashboard'))
+        .catch(() => console.error('an error occured on login'))
     }
     return (
         <form onSubmit={handleSubmit} className="max-w-sm mx-auto border rounded-lg p-2 mb-6">

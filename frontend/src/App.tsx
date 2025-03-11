@@ -1,32 +1,24 @@
 import './App.css'
 import Login from './pages/Login'
-import Home from './pages/Home'
+import Welcome from './pages/Welcome'
 import NotFound from './pages/NotFound'
+import Dashboard from './pages/Dashboard'
+import ProtectedRoute from './components/ProtectedRoute'
 
-import { createBrowserRouter, RouterProvider } from 'react-router'
+import { BrowserRouter, Route, Routes } from 'react-router'
 
-const router = createBrowserRouter([
-  {
-    path: "*",
-    element: <NotFound />
-  },
-  {
-    path: "/",
-    element: <Home />
-  },
-  {
-    path: "/login",
-    element: <Login />
-  },
-])
-
-function App() {
-
+export default function App() {
   return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='*' element={<NotFound />}></Route>
+        <Route path='' element={<Welcome />}></Route>
+        <Route path='login' element={<Login />}></Route>
+
+        <Route element={<ProtectedRoute />}>
+          <Route path='dashboard' element={<Dashboard />}></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
-
-export default App
