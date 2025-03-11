@@ -1,9 +1,12 @@
 import { Router } from "express";
-import { login, create } from "../controller/user.js";
+import { login, logout, isLoggedIn ,create } from "../controller/user.js";
+import { isAuthenticated } from "../middlewares/middlewares.js"
 
 const userRouter = Router();
 
 userRouter.post('/login', login);
-// userRouter.put('/', create);
+userRouter.delete('/logout', logout);
+userRouter.get('/isLoggedIn', isAuthenticated, isLoggedIn);
+userRouter.put('/', isAuthenticated, create);
 
 export default userRouter;

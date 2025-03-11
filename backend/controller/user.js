@@ -2,6 +2,9 @@ import { User } from "../db/models/models.js";
 import { hash, compare } from 'bcrypt';
 
 export const login = async (req, res) => {
+  if (req.session.userId) {
+    return res.send({message: 'User already loggedin'})
+  }
   try {
     const { username, password } = req.body;
 
@@ -25,8 +28,22 @@ export const login = async (req, res) => {
       return res.send({message: 'Login successful'});
     })
   } catch (error) {
-    return res.status(500).json({message: 'Login failed'});
+    return res.status(500).send({message: 'Login failed'});
   }
+}
+
+export const logout = async (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      return res.status(500).send('Internal server error')
+    } else {
+      return res.send({message: 'Logout successful'})
+    }
+  });
+}
+
+export const isLoggedIn = async (req, res) => {
+  return res.send({isAuthenticated: true})
 }
 
 export const create = async (req, res) => { //WIP
